@@ -7,8 +7,8 @@ const MainPage = () => {
       <div className="p-10">
           {/* Route buttons  */}
           <div className=" flex items-center justify-around mb-10">
-              <RoutingButton/>
-              <RoutingButton/>
+              <RoutingButton type='new'/>
+              <RoutingButton type='old'/>
           </div>
           {/* Password generator */}
           <div className="">

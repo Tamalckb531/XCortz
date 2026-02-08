@@ -1,8 +1,25 @@
 import React from 'react'
+import { Button } from '../ui/button';
+import { Info } from '@/lib/types';
 
-const RoutingButton = () => {
+interface props {
+    type: "old" | "new";
+}
+
+const info:Info = {
+    new: {
+        text:"I'm Using it First time",
+    },
+    old: {
+        text:"I already have .vault file"
+    }
+}
+
+const RoutingButton = ({ type }:props) => {
   return (
-    <div>RoutingButton</div>
+    <Button>
+          { type == "new" ? info.new.text: info.old.text}      
+    </Button>
   )
 }
 
