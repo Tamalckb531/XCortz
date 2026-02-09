@@ -12,3 +12,7 @@ export interface PasswordDisplayProps {
   onRegenerate: () => void;
   onCopy: () => void;
 }
+
+export interface StrengthIndicatorProps {
+  strength: "weak" | "average" | "strong";
+}
