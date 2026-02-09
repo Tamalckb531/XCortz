@@ -21,14 +21,14 @@ export const PasswordDisplay = ({
         size="icon"
         onClick={onRegenerate}
       >
-        <RefreshCw className="h-4 w-4" />
+        <RefreshCw className="h-4 w-4 text-black" />
       </Button>
       <Button
         variant="outline"
         size="icon"
         onClick={onCopy}
       >
-        <Copy className="h-4 w-4" />
+        <Copy className="h-4 w-4 text-black" />
       </Button>
     </div>
   );
