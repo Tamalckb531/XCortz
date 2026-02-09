@@ -16,3 +16,15 @@ export interface PasswordDisplayProps {
 export interface StrengthIndicatorProps {
   strength: "weak" | "average" | "strong";
 }
+
+export interface PasswordCustomizerProps {
+  length: number;
+  onLengthChange: (value: number[]) => void;
+  options: {
+    uppercase: boolean;
+    lowercase: boolean;
+    numbers: boolean;
+    symbols: boolean;
+  };
+  onOptionChange: (option: keyof PasswordCustomizerProps["options"]) => void;
+}
