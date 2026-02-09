@@ -1,9 +1,11 @@
 export type Info = {
     new: {
         text: string,
+        route: string,
     },
     old: {
         text: string,
+        route: string,
     },
 }
 
