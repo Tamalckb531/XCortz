@@ -11,7 +11,7 @@ const MainPage = () => {
               <RoutingButton type='old'/>
           </div>
           {/* Password generator */}
-          <div className="">
+          <div className=" flex items-center justify-center mt-5">
               <PasswordGenerator/>
           </div>
     </div>
