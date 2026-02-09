@@ -6,3 +6,9 @@ export type Info = {
         text: string,
     },
 }
+
+export interface PasswordDisplayProps {
+  password: string;
+  onRegenerate: () => void;
+  onCopy: () => void;
+}
