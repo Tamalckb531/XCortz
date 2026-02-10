@@ -2,7 +2,7 @@ import Dashboard from '@/components/Dashboard'
 
 const page = () => {
   return (
-    <div className='w-full h-full'><Dashboard/></div>
+    <div className='w-full h-full flex items-center justify-center'><Dashboard/></div>
   )
 }
 
