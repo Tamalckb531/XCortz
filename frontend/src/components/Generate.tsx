@@ -12,11 +12,11 @@ const Generate = () => {
             <Input/>
         </div>      
         <Button>
-            Generate .vault file 
-        </Button>      
-        <Button>
             Generate Pass Key
         </Button>           
+        <Button>
+            Generate .vault file 
+        </Button>      
         <Button onClick={()=>router.push('/dashboard')}>
             Done
         </Button>           

@@ -1,0 +1,379 @@
+{
+    "name": "XCortz",
+    "type": "directory",
+    "path": "/home/tamal/WebProjects/XCortz",
+    "children": [
+        {
+            "name": "prompt.ts",
+            "type": "file",
+            "path": "/home/tamal/WebProjects/XCortz/prompt.ts"
+        },
+        {
+            "name": "README.md",
+            "type": "file",
+            "path": "/home/tamal/WebProjects/XCortz/README.md"
+        },
+        {
+            "name": ".gitignore",
+            "type": "file",
+            "path": "/home/tamal/WebProjects/XCortz/.gitignore"
+        },
+        {
+            "name": ".git",
+            "type": "directory",
+            "path": "/home/tamal/WebProjects/XCortz/.git",
+            "note": "Git metadata (not expanded)"
+        },
+        {
+            "name": "backend",
+            "type": "directory",
+            "path": "/home/tamal/WebProjects/XCortz/backend",
+            "children": [
+                {
+                    "name": ".gitignore",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/.gitignore"
+                },
+                {
+                    "name": "README.md",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/README.md"
+                },
+                {
+                    "name": "package.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/package.json"
+                },
+                {
+                    "name": "package-lock.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/package-lock.json"
+                },
+                {
+                    "name": "tsconfig.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/tsconfig.json"
+                },
+                {
+                    "name": "node_modules",
+                    "type": "directory",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/node_modules",
+                    "note": "Dependencies (not expanded)"
+                },
+                {
+                    "name": "src",
+                    "type": "directory",
+                    "path": "/home/tamal/WebProjects/XCortz/backend/src",
+                    "children": [
+                        {
+                            "name": "index.ts",
+                            "type": "file",
+                            "path": "/home/tamal/WebProjects/XCortz/backend/src/index.ts"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "frontend",
+            "type": "directory",
+            "path": "/home/tamal/WebProjects/XCortz/frontend",
+            "children": [
+                {
+                    "name": ".gitignore",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/.gitignore"
+                },
+                {
+                    "name": ".next",
+                    "type": "directory",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/.next",
+                    "note": "Next.js build output (not expanded)"
+                },
+                {
+                    "name": "README.md",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/README.md"
+                },
+                {
+                    "name": "components.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/components.json"
+                },
+                {
+                    "name": "eslint.config.mjs",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/eslint.config.mjs"
+                },
+                {
+                    "name": "next-env.d.ts",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/next-env.d.ts"
+                },
+                {
+                    "name": "next.config.ts",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/next.config.ts"
+                },
+                {
+                    "name": "package.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/package.json"
+                },
+                {
+                    "name": "package-lock.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/package-lock.json"
+                },
+                {
+                    "name": "tsconfig.json",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/tsconfig.json"
+                },
+                {
+                    "name": "postcss.config.mjs",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/postcss.config.mjs"
+                },
+                {
+                    "name": "tailwind.config.ts",
+                    "type": "file",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/tailwind.config.ts"
+                },
+                {
+                    "name": "node_modules",
+                    "type": "directory",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/node_modules",
+                    "note": "Dependencies (not expanded)"
+                },
+                {
+                    "name": "public",
+                    "type": "directory",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/public",
+                    "children": [
+                        {
+                            "name": "file.svg",
+                            "type": "file",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/public/file.svg"
+                        },
+                        {
+                            "name": "globe.svg",
+                            "type": "file",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/public/globe.svg"
+                        },
+                        {
+                            "name": "next.svg",
+                            "type": "file",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/public/next.svg"
+                        },
+                        {
+                            "name": "window.svg",
+                            "type": "file",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/public/window.svg"
+                        },
+                        {
+                            "name": "vercel.svg",
+                            "type": "file",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/public/vercel.svg"
+                        }
+                    ]
+                },
+                {
+                    "name": "src",
+                    "type": "directory",
+                    "path": "/home/tamal/WebProjects/XCortz/frontend/src",
+                    "children": [
+                        {
+                            "name": "app",
+                            "type": "directory",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/app",
+                            "children": [
+                                {
+                                    "name": "globals.css",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/globals.css"
+                                },
+                                {
+                                    "name": "layout.tsx",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/layout.tsx"
+                                },
+                                {
+                                    "name": "page.tsx",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/page.tsx"
+                                },
+                                {
+                                    "name": "favicon.ico",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/favicon.ico"
+                                },
+                                {
+                                    "name": "dashboard",
+                                    "type": "directory",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/dashboard",
+                                    "children": [
+                                        {
+                                            "name": "page.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/dashboard/page.tsx"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "generate",
+                                    "type": "directory",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/generate",
+                                    "children": [
+                                        {
+                                            "name": "page.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/generate/page.tsx"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "upload",
+                                    "type": "directory",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/upload",
+                                    "children": [
+                                        {
+                                            "name": "page.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/app/upload/page.tsx"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "components",
+                            "type": "directory",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components",
+                            "children": [
+                                {
+                                    "name": "Generate.tsx",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/Generate.tsx"
+                                },
+                                {
+                                    "name": "Upload.tsx",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/Upload.tsx"
+                                },
+                                {
+                                    "name": "Dashboard.tsx",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/Dashboard.tsx"
+                                },
+                                {
+                                    "name": "MainPage.tsx",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPage.tsx"
+                                },
+                                {
+                                    "name": "DashboardComp",
+                                    "type": "directory",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/DashboardComp",
+                                    "children": [
+                                        {
+                                            "name": "PasswordTable.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/DashboardComp/PasswordTable.tsx"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "MainPageComp",
+                                    "type": "directory",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPageComp",
+                                    "children": [
+                                        {
+                                            "name": "PasswordCustomizer.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPageComp/PasswordCustomizer.tsx"
+                                        },
+                                        {
+                                            "name": "RoutingButton.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPageComp/RoutingButton.tsx"
+                                        },
+                                        {
+                                            "name": "PasswordDisplay.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPageComp/PasswordDisplay.tsx"
+                                        },
+                                        {
+                                            "name": "PasswordGenerator.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPageComp/PasswordGenerator.tsx"
+                                        },
+                                        {
+                                            "name": "StrengthIndicator.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/MainPageComp/StrengthIndicator.tsx"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "ui",
+                                    "type": "directory",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui",
+                                    "children": [
+                                        {
+                                            "name": "button.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui/button.tsx"
+                                        },
+                                        {
+                                            "name": "checkbox.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui/checkbox.tsx"
+                                        },
+                                        {
+                                            "name": "input.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui/input.tsx"
+                                        },
+                                        {
+                                            "name": "label.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui/label.tsx"
+                                        },
+                                        {
+                                            "name": "slider.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui/slider.tsx"
+                                        },
+                                        {
+                                            "name": "table.tsx",
+                                            "type": "file",
+                                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/components/ui/table.tsx"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "lib",
+                            "type": "directory",
+                            "path": "/home/tamal/WebProjects/XCortz/frontend/src/lib",
+                            "children": [
+                                {
+                                    "name": "types.ts",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/lib/types.ts"
+                                },
+                                {
+                                    "name": "utils.ts",
+                                    "type": "file",
+                                    "path": "/home/tamal/WebProjects/XCortz/frontend/src/lib/utils.ts"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
