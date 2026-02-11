@@ -30,3 +30,9 @@ export interface PasswordCustomizerProps {
   };
   onOptionChange: (option: keyof PasswordCustomizerProps["options"]) => void;
 }
+
+export interface PasskeyFile {
+  version: string;
+  key: string;
+  created_at: string;
+}
