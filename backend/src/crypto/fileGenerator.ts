@@ -57,6 +57,8 @@ export async function generateVaultFile(
   const emptyData = JSON.stringify([]);
   const dataEncrypted = encrypt(emptyData, encryptionKey, dataIV);
 
+  encryptionKey.fill(0);
+
   return {
     version: '1.0',
     salt,
