@@ -55,15 +55,27 @@ export async function deriveKey(
   passkeyBase64: string,
   saltBase64: string
 ): Promise<Buffer> {
+
+  //? edge cases
+  if (!masterKey || masterKey.length < 8) {
+    throw new Error('Master key must be at least 8 characters');
+  }
+  if (!passkeyBase64 || !saltBase64) {
+    throw new Error('Passkey and salt are required');
+  }
+
   // Combine master key and passkey
-  const combined = masterKey + passkeyBase64;
+  const combined = Buffer.concat([
+    Buffer.from(masterKey, 'utf8'),
+    Buffer.from(passkeyBase64, 'base64')
+  ]);
   const salt = Buffer.from(saltBase64, 'base64');
 
   // Use Argon2id for key derivation
   const hash = await hashRaw(combined, {
     algorithm: 2,
-    memoryCost: 65536, // 64 MB
-    timeCost: 3, // 3 iterations
+    memoryCost: 131072, // 128 MB
+    timeCost: 4, // 4 iterations
     parallelism: 4,
     salt,
     outputLen: KEY_LENGTH,
@@ -122,18 +134,22 @@ export function decrypt(
   key: Buffer,
   ivBase64: string
 ): string {
-  const iv = Buffer.from(ivBase64, 'base64');
-  const cipherTextWithTag = Buffer.from(cipherTextBase64, 'base64');
+  try {
+    const iv = Buffer.from(ivBase64, 'base64');
+    const cipherTextWithTag = Buffer.from(cipherTextBase64, 'base64');
 
-  // Extract auth tag (last 16 bytes)
-  const cipherText = cipherTextWithTag.subarray(0, -AUTH_TAG_LENGTH);
-  const authTag = cipherTextWithTag.subarray(-AUTH_TAG_LENGTH);
+    // Extract auth tag (last 16 bytes)
+    const cipherText = cipherTextWithTag.subarray(0, -AUTH_TAG_LENGTH);
+    const authTag = cipherTextWithTag.subarray(-AUTH_TAG_LENGTH);
 
-  const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
-  decipher.setAuthTag(authTag);
+    const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
+    decipher.setAuthTag(authTag);
 
-  let decrypted = decipher.update(cipherText.toString('base64'), 'base64', 'utf8');
-  decrypted += decipher.final('utf8');
+    let decrypted = decipher.update(cipherText.toString('base64'), 'base64', 'utf8');
+    decrypted += decipher.final('utf8');
 
-  return decrypted;
+    return decrypted;
+  } catch (err) {
+    throw new Error('Decryption failed');
+  }
 }
