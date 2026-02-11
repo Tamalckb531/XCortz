@@ -131,7 +131,7 @@ const Generate = () => {
                     value={masterKey}
                     onChange={(e) => setMasterKey(e.target.value)}
                     placeholder="Enter master key (min 8 chars)"
-                    className="min-w-[300px]"
+                    className="min-w-75"
                 />
                 {masterKey.length > 0 && masterKey.length < 8 && (
                 <span className="text-sm text-red-500 mt-1">
