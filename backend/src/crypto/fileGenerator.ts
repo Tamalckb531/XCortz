@@ -1,3 +1,4 @@
+import type { PasskeyFile, VaultFile } from '../lib/type.ts';
 import {
   generateRandomKey,
   generateSalt,
@@ -11,26 +12,6 @@ import {
  * 
  * Generates .passkey and .vault files with proper structure
  */
-
-export interface PasskeyFile {
-  version: string;
-  key: string;
-  created_at: string;
-}
-
-export interface VaultFile {
-  version: string;
-  salt: string;
-  verification: {
-    iv: string;
-    cipherText: string;
-  };
-  data: {
-    iv: string;
-    cipherText: string;
-  };
-}
-
 const VERIFICATION_TEXT = 'VAULT_VALID_v1';
 
 /**
