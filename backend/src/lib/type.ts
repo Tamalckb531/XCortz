@@ -6,6 +6,7 @@ export interface PasskeyFile {
 
 export interface VaultFile {
   version: string;
+  fileVersion?: number;
   salt: string;
   verification: {
     iv: string;
@@ -15,4 +16,13 @@ export interface VaultFile {
     iv: string;
     cipherText: string;
   };
+}
+
+export interface Password {
+  id: number;
+  name: string;
+  description: string;
+  password: string;
+  created_at?: string;
+  updated_at?: string;
 }

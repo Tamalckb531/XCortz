@@ -1,3 +1,4 @@
+import type { PasskeyFile, Password, VaultFile } from '../lib/type.ts';
 import { deriveKey, decrypt } from './encryption.ts';
 
 /**
@@ -8,35 +9,6 @@ import { deriveKey, decrypt } from './encryption.ts';
  * - Decrypt and parse password data
  * - Pure business logic (no I/O)
  */
-
-export interface VaultFile {
-  version: string;
-  fileVersion?: number;
-  salt: string;
-  verification: {
-    iv: string;
-    ciphertext: string;
-  };
-  data: {
-    iv: string;
-    ciphertext: string;
-  };
-}
-
-export interface PasskeyFile {
-  version: string;
-  key: string;
-  created_at: string;
-}
-
-export interface Password {
-  id: number;
-  name: string;
-  description: string;
-  password: string;
-  created_at?: string;
-  updated_at?: string;
-}
 
 const VERIFICATION_TEXT = 'VAULT_VALID_v1';
 
@@ -73,7 +45,7 @@ export async function verifyVaultCredentials(
 
     // Decrypt verification section
     const decryptedVerification = decrypt(
-      vaultFile.verification.ciphertext,
+      vaultFile.verification.cipherText,
       encryptionKey,
       vaultFile.verification.iv
     );
@@ -109,7 +81,7 @@ export function decryptVaultData(
   try {
     // Decrypt the data section
     const decryptedData = decrypt(
-      vaultFile.data.ciphertext,
+      vaultFile.data.cipherText,
       encryptionKey,
       vaultFile.data.iv
     );
