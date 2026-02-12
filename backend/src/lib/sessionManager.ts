@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { randomUUID } from 'crypto';
-import type { VaultFile, PasskeyFile } from '../lib/type.ts';
+import type { VaultFile, PasskeyFile, SessionData} from '../lib/type.ts';
 
 /**
  * SESSION MANAGER MODULE
@@ -14,12 +14,6 @@ import type { VaultFile, PasskeyFile } from '../lib/type.ts';
  */
 
 const SESSIONS_DIR = path.join(process.cwd(), 'sessions');
-
-export interface SessionData {
-  sessionId: string;
-  vaultPath: string;
-  passkeyPath: string;
-}
 
 /**
  * Initialize sessions directory on server start

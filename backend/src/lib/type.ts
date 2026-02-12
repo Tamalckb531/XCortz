@@ -27,4 +27,10 @@ export interface Password {
   updated_at?: string;
 }
 
+export interface SessionData {
+  sessionId: string;
+  vaultPath: string;
+  passkeyPath: string;
+}
+
 export const VERIFICATION_TEXT = 'VAULT_VALID_v1';
