@@ -72,7 +72,7 @@ export function decryptVaultData(
     );
 
     // Parse JSON array
-    const passwords = JSON.parse(decryptedData);
+    const passwords:Password[] = JSON.parse(decryptedData);
 
     // Validate structure
     if (!Array.isArray(passwords)) {
