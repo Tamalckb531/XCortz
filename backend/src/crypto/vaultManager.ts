@@ -1,4 +1,5 @@
 import { VERIFICATION_TEXT, type PasskeyFile, type Password, type VaultFile } from '../lib/type.ts';
+import { VaultDecryptionError, VaultVerificationError } from '../lib/utils.ts';
 import { deriveKey, decrypt } from './encryption.ts';
 
 /**
@@ -9,20 +10,6 @@ import { deriveKey, decrypt } from './encryption.ts';
  * - Decrypt and parse password data
  * - Pure business logic (no I/O)
  */
-
-export class VaultVerificationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'VaultVerificationError';
-  }
-}
-
-export class VaultDecryptionError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'VaultDecryptionError';
-  }
-}
 
 /**
  * Verify that master key + passkey can decrypt the vault
