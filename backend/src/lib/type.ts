@@ -26,3 +26,5 @@ export interface Password {
   created_at?: string;
   updated_at?: string;
 }
+
+export const VERIFICATION_TEXT = 'VAULT_VALID_v1';

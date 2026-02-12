@@ -1,4 +1,4 @@
-import type { PasskeyFile, Password, VaultFile } from '../lib/type.ts';
+import { VERIFICATION_TEXT, type PasskeyFile, type Password, type VaultFile } from '../lib/type.ts';
 import { deriveKey, decrypt } from './encryption.ts';
 
 /**
@@ -9,8 +9,6 @@ import { deriveKey, decrypt } from './encryption.ts';
  * - Decrypt and parse password data
  * - Pure business logic (no I/O)
  */
-
-const VERIFICATION_TEXT = 'VAULT_VALID_v1';
 
 export class VaultVerificationError extends Error {
   constructor(message: string) {
