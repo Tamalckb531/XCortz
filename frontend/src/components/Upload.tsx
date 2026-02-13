@@ -55,6 +55,29 @@ const Upload = () => {
         reader.readAsText(file);
         });
     };
+
+    /**
+     * Handle passkey file upload
+     */
+    const handlePasskeyUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        try {
+        setError(null);
+        const passkeyData = await readJsonFile<PasskeyFile>(file);
+
+        // Validate structure
+        if (!passkeyData.key || !passkeyData.version) {
+            throw new Error('Invalid passkey file format');
+        }
+
+        setPasskeyFile(passkeyData);
+        } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load passkey file');
+        setPasskeyFile(null);
+        }
+    };
   return (
     <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
         <div className='flex flex-col'>
