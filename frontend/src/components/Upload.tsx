@@ -161,20 +161,92 @@ const Upload = () => {
     const isFormComplete = masterKey.length >= 8 && passkeyFile !== null && vaultFile !== null;
 
   return (
-    <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
-        <div className='flex flex-col'>
-            <span className='mb-2'>Provide your master key</span>
-            <Input/>
-        </div>      
-        <Button>
-            Upload your .vault file 
-        </Button>      
-        <Button>
-            Upload your Pass Key
-        </Button>           
-        <Button onClick={()=>router.push('/dashboard')}>
-            Go to Dashboard
-        </Button>           
+   <div className="h-full w-full flex flex-col items-center justify-center gap-3">
+      {/* Master Key Input */}
+      <div className="flex flex-col">
+        <span className="mb-2">Provide your master key</span>
+        <Input
+          type="password"
+          value={masterKey}
+          onChange={(e) => setMasterKey(e.target.value)}
+          placeholder="Enter master key"
+          className="min-w-75"
+        />
+        {masterKey.length > 0 && masterKey.length < 8 && (
+          <span className="text-sm text-red-500 mt-1">
+            Master key must be at least 8 characters
+          </span>
+        )}
+      </div>
+
+      {/* Passkey File Upload */}
+      <div className="flex flex-col gap-2">
+        <input
+          ref={passkeyInputRef}
+          type="file"
+          accept=".passkey"
+          onChange={handlePasskeyUpload}
+          className="hidden"
+        />
+        <Button onClick={() => passkeyInputRef.current?.click()}>
+          {passkeyFile ? '✓ Passkey Uploaded' : 'Upload your Pass Key'}
+        </Button>
+        {passkeyFile && (
+          <span className="text-sm text-green-600">
+            Passkey loaded successfully
+          </span>
+        )}
+      </div>
+
+      {/* Vault File Upload */}
+      <div className="flex flex-col gap-2">
+        <input
+          ref={vaultInputRef}
+          type="file"
+          accept=".vault"
+          onChange={handleVaultUpload}
+          className="hidden"
+        />
+        <Button onClick={() => vaultInputRef.current?.click()}>
+          {vaultFile ? '✓ Vault Uploaded' : 'Upload your .vault file'}
+        </Button>
+        {vaultFile && (
+          <span className="text-sm text-green-600">
+            Vault loaded successfully
+          </span>
+        )}
+      </div>
+
+      {/* Error Display */}
+      {error && (
+        <div className="text-sm text-red-500 max-w-75 text-center">
+          {error}
+        </div>
+      )}
+
+      {/* Go to Dashboard Button */}
+      <Button
+        onClick={handleGoToDashboard}
+        disabled={!isFormComplete || isLoading}
+      >
+        {isLoading ? 'Verifying...' : 'Go to Dashboard'}
+      </Button>
+
+      {/* Status Indicators */}
+      <div className="mt-4 flex flex-col gap-1 text-sm">
+        <div className="flex items-center gap-2">
+          <span>{masterKey.length >= 8 ? '✅' : '⏳'}</span>
+          <span>Master key {masterKey.length >= 8 ? 'provided' : 'pending'}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>{passkeyFile ? '✅' : '⏳'}</span>
+          <span>Passkey {passkeyFile ? 'uploaded' : 'pending'}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>{vaultFile ? '✅' : '⏳'}</span>
+          <span>Vault {vaultFile ? 'uploaded' : 'pending'}</span>
+        </div>
+      </div>
     </div>
   )
 }
