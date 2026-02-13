@@ -106,6 +106,55 @@ const Upload = () => {
         setVaultFile(null);
         }
     };
+
+    /**
+     * Verify credentials and navigate to dashboard
+     */
+    const handleGoToDashboard = async () => {
+        if (!masterKey || !passkeyFile || !vaultFile) {
+        setError('Please provide all required fields');
+        return;
+        }
+
+        setIsLoading(true);
+        setError(null);
+
+        try {
+        const response = await fetch('http://localhost:3000/api/upload-vault', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            masterKey,
+            passkeyFile,
+            vaultFile,
+            }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Store session ID for future requests
+            localStorage.setItem('xcortz_session_id', result.sessionId);
+
+            // Navigate to dashboard with passwords
+            // Using query params to pass data (temporary solution)
+            // In production, consider using global state management
+            localStorage.setItem('xcortz_passwords', JSON.stringify(result.passwords));
+            
+            router.push('/dashboard');
+        } else {
+            setError(result.error || 'Failed to verify credentials');
+        }
+        } catch (err) {
+        console.error('Upload error:', err);
+        setError('Failed to connect to server. Please ensure the backend is running.');
+        } finally {
+        setIsLoading(false);
+        }
+    };
+
   return (
     <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
         <div className='flex flex-col'>
