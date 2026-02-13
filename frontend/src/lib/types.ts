@@ -36,3 +36,26 @@ export interface PasskeyFile {
   key: string;
   created_at: string;
 }
+
+export interface VaultFile {
+  version: string;
+  fileVersion?: number;
+  salt: string;
+  verification: {
+    iv: string;
+    ciphertext: string;
+  };
+  data: {
+    iv: string;
+    ciphertext: string;
+  };
+}
+
+export interface Password {
+  id: number;
+  name: string;
+  description: string;
+  password: string;
+  created_at?: string;
+  updated_at?: string;
+}
