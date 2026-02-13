@@ -78,6 +78,34 @@ const Upload = () => {
         setPasskeyFile(null);
         }
     };
+
+    /**
+     * Handle vault file upload
+    */
+    const handleVaultUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        try {
+        setError(null);
+        const vaultData = await readJsonFile<VaultFile>(file);
+
+        // Validate structure
+        if (
+            !vaultData.salt ||
+            !vaultData.verification ||
+            !vaultData.data ||
+            !vaultData.version
+        ) {
+            throw new Error('Invalid vault file format');
+        }
+
+        setVaultFile(vaultData);
+        } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load vault file');
+        setVaultFile(null);
+        }
+    };
   return (
     <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
         <div className='flex flex-col'>
