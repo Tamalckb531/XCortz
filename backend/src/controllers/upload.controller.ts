@@ -4,11 +4,16 @@ import type { PasskeyFile, VaultFile } from "../lib/type.ts";
 import { createSession } from "../lib/sessionManager.ts";
 import { VaultDecryptionError, VaultVerificationError } from "../lib/utils.ts";
 
+interface Body{
+    masterKey: string;
+    passkeyFile: PasskeyFile;
+    vaultFile: VaultFile;
+}
 
 export const uploadController = async (c:Context) => {
    try {
       const body = await c.req.json();
-      const { masterKey, passkeyFile, vaultFile } = body;
+      const { masterKey, passkeyFile, vaultFile }:Body = body;
   
       // Validate required fields
       if (!masterKey || typeof masterKey !== 'string') {
