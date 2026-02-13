@@ -155,6 +155,11 @@ const Upload = () => {
         }
     };
 
+    /**
+     * Check if all fields are filled
+     */
+    const isFormComplete = masterKey.length >= 8 && passkeyFile !== null && vaultFile !== null;
+
   return (
     <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
         <div className='flex flex-col'>
