@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
-import { PasskeyFile, VaultFile, Password } from '@/lib/types';
+import { PasskeyFile, VaultFile, Password, UploadResult } from '@/lib/types';
 
 /**
  * UPLOAD COMPONENT
@@ -129,21 +129,22 @@ const Upload = () => {
               'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-              masterKey,
-              passkeyFile,
-              vaultFile,
+                masterKey,
+                passkeyFile,
+                vaultFile,
               }),
           });
 
-          const result = await response.json();
+          const result:UploadResult = await response.json();
 
+          //! Adding passwords in the local storage is risky
           if (result.success) {
               // Store session ID for future requests
               localStorage.setItem('xcortz_session_id', result.sessionId);
 
               // Navigate to dashboard with passwords
               // Using query params to pass data (temporary solution)
-              // In production, consider using global state management
+              //todo: In production, consider using global state management
               localStorage.setItem('xcortz_passwords', JSON.stringify(result.passwords));
               
               router.push('/dashboard');

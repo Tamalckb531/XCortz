@@ -59,3 +59,10 @@ export interface Password {
   created_at?: string;
   updated_at?: string;
 }
+
+export interface UploadResult{
+  success: boolean,
+  sessionId: string,
+  passwords: Password,
+  error?: any;
+}
