@@ -35,16 +35,17 @@ const Upload = () => {
      * Read and parse JSON file
      */
     const readJsonFile = <T,>(file: File): Promise<T> => {
-        return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
         reader.onload = (e) => {
             try {
-            const content = e.target?.result as string;
-            const json = JSON.parse(content);
-            resolve(json);
-            } catch (error) {
-            reject(new Error('Invalid JSON file'));
+              const content = e.target?.result as string;
+              const json = JSON.parse(content);
+              resolve(json);
+            }
+            catch (error) {
+              reject(new Error('Invalid JSON file'));
             }
         };
 
@@ -53,7 +54,7 @@ const Upload = () => {
         };
 
         reader.readAsText(file);
-        });
+      });
     };
 
     /**
@@ -64,18 +65,19 @@ const Upload = () => {
         if (!file) return;
 
         try {
-        setError(null);
-        const passkeyData = await readJsonFile<PasskeyFile>(file);
+          setError(null);
+          const passkeyData = await readJsonFile<PasskeyFile>(file);
 
-        // Validate structure
-        if (!passkeyData.key || !passkeyData.version) {
-            throw new Error('Invalid passkey file format');
+          // Validate structure
+          if (!passkeyData.key || !passkeyData.version) {
+              throw new Error('Invalid passkey file format');
+          }
+
+          setPasskeyFile(passkeyData);
         }
-
-        setPasskeyFile(passkeyData);
-        } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load passkey file');
-        setPasskeyFile(null);
+        catch (err) {
+          setError(err instanceof Error ? err.message : 'Failed to load passkey file');
+          setPasskeyFile(null);
         }
     };
 
@@ -87,23 +89,24 @@ const Upload = () => {
         if (!file) return;
 
         try {
-        setError(null);
-        const vaultData = await readJsonFile<VaultFile>(file);
+          setError(null);
+          const vaultData = await readJsonFile<VaultFile>(file);
 
-        // Validate structure
-        if (
-            !vaultData.salt ||
-            !vaultData.verification ||
-            !vaultData.data ||
-            !vaultData.version
-        ) {
-            throw new Error('Invalid vault file format');
+          // Validate structure
+          if (
+              !vaultData.salt ||
+              !vaultData.verification ||
+              !vaultData.data ||
+              !vaultData.version
+          ) {
+              throw new Error('Invalid vault file format');
+          }
+
+          setVaultFile(vaultData);
         }
-
-        setVaultFile(vaultData);
-        } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load vault file');
-        setVaultFile(null);
+        catch (err) {
+          setError(err instanceof Error ? err.message : 'Failed to load vault file');
+          setVaultFile(null);
         }
     };
 
@@ -112,46 +115,48 @@ const Upload = () => {
      */
     const handleGoToDashboard = async () => {
         if (!masterKey || !passkeyFile || !vaultFile) {
-        setError('Please provide all required fields');
-        return;
+          setError('Please provide all required fields');
+          return;
         }
 
         setIsLoading(true);
         setError(null);
 
         try {
-        const response = await fetch('http://localhost:3000/api/upload-vault', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-            masterKey,
-            passkeyFile,
-            vaultFile,
-            }),
-        });
+          const response = await fetch('http://localhost:3000/api/upload-vault', {
+              method: 'POST',
+              headers: {
+              'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+              masterKey,
+              passkeyFile,
+              vaultFile,
+              }),
+          });
 
-        const result = await response.json();
+          const result = await response.json();
 
-        if (result.success) {
-            // Store session ID for future requests
-            localStorage.setItem('xcortz_session_id', result.sessionId);
+          if (result.success) {
+              // Store session ID for future requests
+              localStorage.setItem('xcortz_session_id', result.sessionId);
 
-            // Navigate to dashboard with passwords
-            // Using query params to pass data (temporary solution)
-            // In production, consider using global state management
-            localStorage.setItem('xcortz_passwords', JSON.stringify(result.passwords));
-            
-            router.push('/dashboard');
-        } else {
-            setError(result.error || 'Failed to verify credentials');
+              // Navigate to dashboard with passwords
+              // Using query params to pass data (temporary solution)
+              // In production, consider using global state management
+              localStorage.setItem('xcortz_passwords', JSON.stringify(result.passwords));
+              
+              router.push('/dashboard');
+          } else {
+              setError(result.error || 'Failed to verify credentials');
+          }
         }
-        } catch (err) {
-        console.error('Upload error:', err);
-        setError('Failed to connect to server. Please ensure the backend is running.');
-        } finally {
-        setIsLoading(false);
+        catch (err) {
+          console.error('Upload error:', err);
+          setError('Failed to connect to server. Please ensure the backend is running.');
+        }
+        finally {
+          setIsLoading(false);
         }
     };
 
