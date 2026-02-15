@@ -2,16 +2,14 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
 import { Edit } from "lucide-react";
 
-const invoices = [
+const passwords = [
   {
     id:1,
     name: "INV001",
@@ -68,11 +66,11 @@ const PasswordTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.id}>
-            <TableCell className="font-medium">{invoice.name}</TableCell>
-            <TableCell>{invoice.description}</TableCell>
-            <TableCell>{invoice.password}</TableCell>
+        {passwords.map((password) => (
+          <TableRow key={password.id}>
+            <TableCell className="font-medium">{password.name}</TableCell>
+            <TableCell>{password.description}</TableCell>
+            <TableCell>{password.password}</TableCell>
             <TableCell className="text-right cursor-pointer"><Edit size={18} className="w-full"/></TableCell>
           </TableRow>
         ))}
