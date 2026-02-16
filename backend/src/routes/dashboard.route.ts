@@ -7,7 +7,7 @@ import {
 } from '../crypto/dashboardOperation.ts';
 import { sessionExists, deleteSession } from '../lib/sessionManager.ts';
 import type { Password } from '../lib/type.ts';
-import { addPasswordController, editPasswordController } from '../controllers/dashboard.controller.ts';
+import { addPasswordController, deletePasswordController, editPasswordController } from '../controllers/dashboard.controller.ts';
 
 /**
  * DASHBOARD ROUTES MODULE
@@ -33,73 +33,13 @@ dashboardRouter.post('/edit-password', editPasswordController);
  * POST /api/delete-password
  * Delete a password
  */
-dashboardRouter.post('/delete-password', async (c) => {
-  try {
-    const body = await c.req.json();
-    const { sessionId, masterKey, passwordId } = body;
-
-    // Validate input
-    if (!sessionId || !masterKey || passwordId === undefined) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session ID, master key, and password ID are required',
-        },
-        400
-      );
-    }
-
-    // Check session exists
-    const exists = await sessionExists(sessionId);
-    if (!exists) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session not found. Please re-upload your vault.',
-        },
-        404
-      );
-    }
-
-    // Delete password
-    const updatedPasswords = await deletePassword(
-      sessionId,
-      masterKey,
-      passwordId
-    );
-
-    return c.json({
-      success: true,
-      passwords: updatedPasswords,
-    });
-  } catch (error) {
-    console.error('Error deleting password:', error);
-    
-    if (error instanceof Error && error.message === 'Password not found') {
-      return c.json(
-        {
-          success: false,
-          error: 'Password not found',
-        },
-        404
-      );
-    }
-
-    return c.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to delete password',
-      },
-      500
-    );
-  }
-});
+dashboardRouter.post('/delete-password', deletePasswordController);
 
 /**
  * GET /api/download-vault/:sessionId
  * Download the updated vault file
  */
-dashboardRouter.get('/download-vault/:sessionId', async (c) => {
+dashboardRouter.get('/download-vault/:sessionId', async (c:Context) => {
   try {
     const sessionId = c.req.param('sessionId');
 
@@ -140,7 +80,7 @@ dashboardRouter.get('/download-vault/:sessionId', async (c) => {
  * POST /api/cleanup-session
  * Delete session after user is done
  */
-dashboardRouter.post('/cleanup-session', async (c) => {
+dashboardRouter.post('/cleanup-session', async (c:Context) => {
   try {
     const body = await c.req.json();
     const { sessionId } = body;
