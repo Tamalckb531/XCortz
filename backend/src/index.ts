@@ -3,6 +3,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import generateRouter from './routes/generate.route.ts'
 import uploadRouter from './routes/upload.route.ts'
+import dashboardRouter from './routes/dashboard.route.ts'
 import { initializeSessionsDirectory } from './lib/sessionManager.ts'
 
 const app = new Hono()
@@ -21,6 +22,7 @@ app.get('/', (c) => {
 // Mount generate routes
 app.route('/api', generateRouter)
 app.route('/api', uploadRouter)
+app.route('/api', dashboardRouter)
 
 const PORT = 3000
 
