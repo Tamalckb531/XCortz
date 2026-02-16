@@ -129,8 +129,67 @@ export const editPasswordController = async (c:Context) => {
 }
 
 export const deletePasswordController = async (c:Context) => {
-  
+  try {
+    const body = await c.req.json();
+    const { sessionId, masterKey, passwordId } = body;
+
+    // Validate input
+    if (!sessionId || !masterKey || passwordId === undefined) {
+      return c.json(
+        {
+          success: false,
+          error: 'Session ID, master key, and password ID are required',
+        },
+        400
+      );
+    }
+
+    // Check session exists
+    const exists = await sessionExists(sessionId);
+    if (!exists) {
+      return c.json(
+        {
+          success: false,
+          error: 'Session not found. Please re-upload your vault.',
+        },
+        404
+      );
+    }
+
+    // Delete password
+    const updatedPasswords = await deletePassword(
+      sessionId,
+      masterKey,
+      passwordId
+    );
+
+    return c.json({
+      success: true,
+      passwords: updatedPasswords,
+    });
+  } catch (error) {
+    console.error('Error deleting password:', error);
+    
+    if (error instanceof Error && error.message === 'Password not found') {
+      return c.json(
+        {
+          success: false,
+          error: 'Password not found',
+        },
+        404
+      );
+    }
+
+    return c.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to delete password',
+      },
+      500
+    );
+  }
 }
+
 export const downloadVaultController = async (c:Context) => {
   
 }
