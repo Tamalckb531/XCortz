@@ -1,60 +1,32 @@
 "use client";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { Edit } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
+import { Button } from '../ui/button';
+import { Edit, Trash2 } from 'lucide-react';
+import { PasswordTableProps } from '@/lib/types';
 
-const passwords = [
-  {
-    id:1,
-    name: "INV001",
-    description: "Paid",
-    password: "$250.00",
-  },
-  {
-    id:2,
-    name: "INV002",
-    description: "Pending",
-    password: "$150.00",
-  },
-  {
-    id:3,
-    name: "INV003",
-    description: "Unpaid",
-    password: "$350.00",
-  },
-  {
-    id:4,
-    name: "INV004",
-    description: "Paid",
-    password: "$450.00",
-  },
-  {
-    id:5,
-    name: "INV005",
-    description: "Paid",
-    password: "$550.00",
-  },
-  {
-    id:6,
-    name: "INV006",
-    description: "Pending",
-    password: "$200.00",
-  },
-  {
-    id:7,
-    name: "INV007",
-    description: "Unpaid",
-    password: "$300.00",
-  },
-]
+/**
+ * PASSWORD TABLE COMPONENT
+ * 
+ * Displays all passwords in a table
+ * Emits onEdit and onDelete events
+ */
 
-const PasswordTable = () => {
+const PasswordTable = ({ passwords, onEdit, onDelete }: PasswordTableProps) => {
+  const handleDelete = (passwordId: number, passwordName: string) => {
+    const confirmed = confirm(`Are you sure you want to delete "${passwordName}"?`);
+    if (confirmed) {
+      onDelete(passwordId);
+    }
+  };
+
+  if (passwords.length === 0) {
+    return (
+      <div className="w-full text-center py-8">
+        <p className="text-sm">No passwords yet. Click "Add" to create your first password.</p>
+      </div>
+    );
+  }
+
   return (
     <Table>
       <TableHeader>
@@ -62,7 +34,7 @@ const PasswordTable = () => {
           <TableHead className="w-25">Name</TableHead>
           <TableHead>Description</TableHead>
           <TableHead>Password</TableHead>
-          <TableHead className="text-right">Edit</TableHead>
+          <TableHead className="text-right">Actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -71,12 +43,29 @@ const PasswordTable = () => {
             <TableCell className="font-medium">{password.name}</TableCell>
             <TableCell>{password.description}</TableCell>
             <TableCell>{password.password}</TableCell>
-            <TableCell className="text-right cursor-pointer"><Edit size={18} className="w-full"/></TableCell>
+            <TableCell className="text-right">
+              <div className="flex items-center justify-end gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => onEdit(password)}
+                >
+                  <Edit size={18} />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleDelete(password.id, password.name)}
+                >
+                  <Trash2 size={18} />
+                </Button>
+              </div>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
-export default PasswordTable
+export default PasswordTable;

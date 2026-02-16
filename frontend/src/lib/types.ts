@@ -87,3 +87,9 @@ export interface AddPasswordModalProps {
   onAdd: (password: { name: string; description: string; password: string }) => void;
   isLoading?: boolean;
 }
+
+export interface PasswordTableProps {
+  passwords: Password[];
+  onEdit: (password: Password) => void;
+  onDelete: (passwordId: number) => void;
+}
