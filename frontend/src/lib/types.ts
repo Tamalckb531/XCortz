@@ -66,3 +66,9 @@ export interface UploadResult{
   passwords: Password,
   error?: any;
 }
+
+export interface UnsavedChangesIndicatorProps {
+  changesCount: number;
+  onDownload: () => void;
+  isDownloading?: boolean;
+}
