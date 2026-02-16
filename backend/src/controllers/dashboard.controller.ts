@@ -191,8 +191,42 @@ export const deletePasswordController = async (c:Context) => {
 }
 
 export const downloadVaultController = async (c:Context) => {
-  
+  try {
+    const sessionId = c.req.param('sessionId');
+
+    // Check session exists
+    const exists = await sessionExists(sessionId);
+    if (!exists) {
+      return c.json(
+        {
+          success: false,
+          error: 'Session not found',
+        },
+        404
+      );
+    }
+
+    // Increment version and get vault
+    const updatedVault = await incrementVaultVersion(sessionId);
+
+    // Return as downloadable file
+    const filename = `xcortz_${updatedVault.fileVersion}.vault`;
+    
+    return c.json(updatedVault, 200, {
+      'Content-Disposition': `attachment; filename="${filename}"`,
+    });
+  } catch (error) {
+    console.error('Error downloading vault:', error);
+    return c.json(
+      {
+        success: false,
+        error: 'Failed to download vault',
+      },
+      500
+    );
+  }
 }
+
 export const cleanupSessionController = async (c:Context) => {
   
 }
