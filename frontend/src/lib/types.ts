@@ -80,3 +80,10 @@ export interface EditPasswordModalProps {
   password: Password | null;
   isLoading?: boolean;
 }
+
+export interface AddPasswordModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onAdd: (password: { name: string; description: string; password: string }) => void;
+  isLoading?: boolean;
+}
