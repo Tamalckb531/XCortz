@@ -1,12 +1,4 @@
 import { Hono } from 'hono';
-import {
-  addPassword,
-  editPassword,
-  deletePassword,
-  incrementVaultVersion,
-} from '../crypto/dashboardOperation.ts';
-import { sessionExists, deleteSession } from '../lib/sessionManager.ts';
-import type { Password } from '../lib/type.ts';
 import { addPasswordController, cleanupSessionController, deletePasswordController, downloadVaultController, editPasswordController } from '../controllers/dashboard.controller.ts';
 
 /**
