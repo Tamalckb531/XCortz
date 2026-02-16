@@ -7,7 +7,7 @@ import {
 } from '../crypto/dashboardOperation.ts';
 import { sessionExists, deleteSession } from '../lib/sessionManager.ts';
 import type { Password } from '../lib/type.ts';
-import { addPasswordController } from '../controllers/dashboard.controller.ts';
+import { addPasswordController, editPasswordController } from '../controllers/dashboard.controller.ts';
 
 /**
  * DASHBOARD ROUTES MODULE
@@ -27,68 +27,7 @@ dashboardRouter.post('/add-password', addPasswordController);
  * POST /api/edit-password
  * Edit an existing password
  */
-dashboardRouter.post('/edit-password', async (c) => {
-  try {
-    const body = await c.req.json();
-    const { sessionId, masterKey, passwordId, updates } = body;
-
-    // Validate input
-    if (!sessionId || !masterKey || passwordId === undefined || !updates) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session ID, master key, password ID, and updates are required',
-        },
-        400
-      );
-    }
-
-    // Check session exists
-    const exists = await sessionExists(sessionId);
-    if (!exists) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session not found. Please re-upload your vault.',
-        },
-        404
-      );
-    }
-
-    // Edit password
-    const updatedPasswords = await editPassword(
-      sessionId,
-      masterKey,
-      passwordId,
-      updates
-    );
-
-    return c.json({
-      success: true,
-      passwords: updatedPasswords,
-    });
-  } catch (error) {
-    console.error('Error editing password:', error);
-    
-    if (error instanceof Error && error.message === 'Password not found') {
-      return c.json(
-        {
-          success: false,
-          error: 'Password not found',
-        },
-        404
-      );
-    }
-
-    return c.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to edit password',
-      },
-      500
-    );
-  }
-});
+dashboardRouter.post('/edit-password', editPasswordController);
 
 /**
  * POST /api/delete-password

@@ -66,8 +66,68 @@ export const addPasswordController = async (c:Context) => {
 }
 
 export const editPasswordController = async (c:Context) => {
-  
+  try {
+    const body = await c.req.json();
+    const { sessionId, masterKey, passwordId, updates } = body;
+
+    // Validate input
+    if (!sessionId || !masterKey || passwordId === undefined || !updates) {
+      return c.json(
+        {
+          success: false,
+          error: 'Session ID, master key, password ID, and updates are required',
+        },
+        400
+      );
+    }
+
+    // Check session exists
+    const exists = await sessionExists(sessionId);
+    if (!exists) {
+      return c.json(
+        {
+          success: false,
+          error: 'Session not found. Please re-upload your vault.',
+        },
+        404
+      );
+    }
+
+    // Edit password
+    const updatedPasswords = await editPassword(
+      sessionId,
+      masterKey,
+      passwordId,
+      updates
+    );
+
+    return c.json({
+      success: true,
+      passwords: updatedPasswords,
+    });
+  } catch (error) {
+    console.error('Error editing password:', error);
+    
+    if (error instanceof Error && error.message === 'Password not found') {
+      return c.json(
+        {
+          success: false,
+          error: 'Password not found',
+        },
+        404
+      );
+    }
+
+    return c.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to edit password',
+      },
+      500
+    );
+  }
 }
+
 export const deletePasswordController = async (c:Context) => {
   
 }
