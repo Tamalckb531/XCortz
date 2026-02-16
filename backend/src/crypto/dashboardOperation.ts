@@ -182,7 +182,7 @@ export async function deletePassword(
   // Re-encrypt and save
   await encryptAndSavePasswords(
     sessionId,
-    passwords.filter(p => p.id !== passwordId),
+    filteredPasswords,
     vaultFile,
     passkeyFile,
     masterKey
