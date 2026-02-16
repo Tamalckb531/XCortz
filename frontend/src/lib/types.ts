@@ -72,3 +72,11 @@ export interface UnsavedChangesIndicatorProps {
   onDownload: () => void;
   isDownloading?: boolean;
 }
+
+export interface EditPasswordModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onEdit: (passwordId: number, updates: { name: string; description: string; password: string }) => void;
+  password: Password | null;
+  isLoading?: boolean;
+}
