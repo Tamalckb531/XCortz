@@ -166,29 +166,29 @@ export async function deletePassword(
   passwordId: number
 ): Promise<Password[]> {
   // Load files from session
-  const vaultFile = await loadVaultFromSession(sessionId);
-  const passkeyFile = await loadPasskeyFromSession(sessionId);
+    const vaultFile = await loadVaultFromSession(sessionId);
+    const passkeyFile = await loadPasskeyFromSession(sessionId);
 
-  // Decrypt current passwords
-  const passwords = await decryptPasswords(vaultFile, passkeyFile, masterKey);
+    // Decrypt current passwords
+    const passwords = await decryptPasswords(vaultFile, passkeyFile, masterKey);
 
-  // Filter out the password
-  const filteredPasswords = passwords.filter(p => p.id !== passwordId);
+    // Filter out the password
+    const filteredPasswords = passwords.filter(p => p.id !== passwordId);
 
-  if (filteredPasswords.length === passwords.length) {
-    throw new Error('Password not found');
-  }
+    if (filteredPasswords.length === passwords.length) {
+        throw new Error('Password not found');
+    }
 
-  // Re-encrypt and save
-  await encryptAndSavePasswords(
-    sessionId,
-    filteredPasswords,
-    vaultFile,
-    passkeyFile,
-    masterKey
-  );
+    // Re-encrypt and save
+    await encryptAndSavePasswords(
+        sessionId,
+        filteredPasswords,
+        vaultFile,
+        passkeyFile,
+        masterKey
+    );
 
-  return filteredPasswords;
+    return filteredPasswords;
 }
 
 /**
