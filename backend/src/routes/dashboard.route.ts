@@ -7,6 +7,7 @@ import {
 } from '../crypto/dashboardOperation.ts';
 import { sessionExists, deleteSession } from '../lib/sessionManager.ts';
 import type { Password } from '../lib/type.ts';
+import { addPasswordController } from '../controllers/dashboard.controller.ts';
 
 /**
  * DASHBOARD ROUTES MODULE
@@ -20,62 +21,7 @@ const dashboardRouter = new Hono();
  * POST /api/add-password
  * Add a new password to the vault
  */
-dashboardRouter.post('/add-password', async (c) => {
-  try {
-    const body = await c.req.json();
-    const { sessionId, masterKey, password } = body;
-
-    // Validate input
-    if (!sessionId || !masterKey || !password) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session ID, master key, and password data are required',
-        },
-        400
-      );
-    }
-
-    if (!password.name || !password.description || !password.password) {
-      return c.json(
-        {
-          success: false,
-          error: 'Password name, description, and password are required',
-        },
-        400
-      );
-    }
-
-    // Check session exists
-    const exists = await sessionExists(sessionId);
-    if (!exists) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session not found. Please re-upload your vault.',
-        },
-        404
-      );
-    }
-
-    // Add password
-    const updatedPasswords = await addPassword(sessionId, masterKey, password);
-
-    return c.json({
-      success: true,
-      passwords: updatedPasswords,
-    });
-  } catch (error) {
-    console.error('Error adding password:', error);
-    return c.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to add password',
-      },
-      500
-    );
-  }
-});
+dashboardRouter.post('/add-password', addPasswordController);
 
 /**
  * POST /api/edit-password
