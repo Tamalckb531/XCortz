@@ -1,5 +1,4 @@
 import type { Context } from "hono";
-import { generatePasskeyFile, generateVaultFile } from "../crypto/fileGenerator.ts";
 import {
   addPassword,
   editPassword,
