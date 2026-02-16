@@ -227,6 +227,35 @@ export const downloadVaultController = async (c:Context) => {
   }
 }
 
-export const cleanupSessionController = async (c:Context) => {
-  
+export const cleanupSessionController =  async (c:Context) => {
+  try {
+    const body = await c.req.json();
+    const { sessionId } = body;
+
+    if (!sessionId) {
+      return c.json(
+        {
+          success: false,
+          error: 'Session ID is required',
+        },
+        400
+      );
+    }
+
+    await deleteSession(sessionId);
+
+    return c.json({
+      success: true,
+      message: 'Session cleaned up successfully',
+    });
+  } catch (error) {
+    console.error('Error cleaning up session:', error);
+    return c.json(
+      {
+        success: false,
+        error: 'Failed to cleanup session',
+      },
+      500
+    );
+  }
 }

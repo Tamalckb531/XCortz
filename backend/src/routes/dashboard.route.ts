@@ -7,7 +7,7 @@ import {
 } from '../crypto/dashboardOperation.ts';
 import { sessionExists, deleteSession } from '../lib/sessionManager.ts';
 import type { Password } from '../lib/type.ts';
-import { addPasswordController, deletePasswordController, downloadVaultController, editPasswordController } from '../controllers/dashboard.controller.ts';
+import { addPasswordController, cleanupSessionController, deletePasswordController, downloadVaultController, editPasswordController } from '../controllers/dashboard.controller.ts';
 
 /**
  * DASHBOARD ROUTES MODULE
@@ -45,37 +45,6 @@ dashboardRouter.get('/download-vault/:sessionId', downloadVaultController);
  * POST /api/cleanup-session
  * Delete session after user is done
  */
-dashboardRouter.post('/cleanup-session', async (c:Context) => {
-  try {
-    const body = await c.req.json();
-    const { sessionId } = body;
-
-    if (!sessionId) {
-      return c.json(
-        {
-          success: false,
-          error: 'Session ID is required',
-        },
-        400
-      );
-    }
-
-    await deleteSession(sessionId);
-
-    return c.json({
-      success: true,
-      message: 'Session cleaned up successfully',
-    });
-  } catch (error) {
-    console.error('Error cleaning up session:', error);
-    return c.json(
-      {
-        success: false,
-        error: 'Failed to cleanup session',
-      },
-      500
-    );
-  }
-});
+dashboardRouter.post('/cleanup-session',cleanupSessionController);
 
 export default dashboardRouter;
