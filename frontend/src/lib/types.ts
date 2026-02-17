@@ -84,7 +84,7 @@ export interface EditPasswordModalProps {
 export interface AddPasswordModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onAdd: (password: { name: string; description: string; password: string }) => void;
+  onAdd: (password: Omit<Password,'id'>) => void;
   isLoading?: boolean;
 }
 

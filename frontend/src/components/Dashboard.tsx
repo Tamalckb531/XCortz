@@ -81,11 +81,7 @@ const Dashboard = () => {
   /**
    * Handle adding a new password
    */
-  const handleAddPassword = async (newPassword: {
-    name: string;
-    description: string;
-    password: string;
-  }) => {
+  const handleAddPassword = async (newPassword: Omit<Password, 'id'>) => {
     if (!sessionId || !masterKey) {
       alert('Session expired. Please upload your vault again.');
       router.push('/upload');
