@@ -140,6 +140,8 @@ const Upload = () => {
           //! Adding passwords in the local storage is risky
           if (result.success) {
               // Store session ID for future requests
+              localStorage.setItem('xcortz_master_key', masterKey);
+              // Store session ID for future requests
               localStorage.setItem('xcortz_session_id', result.sessionId);
 
               // Navigate to dashboard with passwords
