@@ -2,7 +2,7 @@ import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
-  <div className="min-h-screen w-full relative bg-black">
+  <main className="min-h-screen w-full relative bg-black">
     <div
       className="absolute inset-0 z-0"
       style={{
@@ -13,6 +13,6 @@ export default function Home() {
     <div className="relative z-10 p-5">
       <HeroSection />
     </div>
-  </div>
+  </main>
   );
 }
