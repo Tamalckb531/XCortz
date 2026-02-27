@@ -3,6 +3,7 @@ import { NavLink } from '@/lib/types';
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Button } from '../ui/button';
+import CTA from '../common/CTA';
 
 const Header = () => {
   const router = useRouter();
@@ -44,9 +45,7 @@ const Header = () => {
           </li>)}
       </ul>
       <div className='flex items-center gap-4 max-md:gap-2.5'>
-        <Button className='relative overflow-hidden text-sm font-semibold px-5 py-2.5 rounded-full bg-linear-to-b from-secondary to-accent text-white border cursor-pointer transition-all duration-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)] max-md:text-[13px] max-md:px-4 max-md:py-2 leading-[0.96] before:absolute before:inset-0 before:bg-linear-to-r before:from-transparent before:via-foreground/40 before:to-transparent before:translate-x-[-200%] before:transition-transform before:duration-1000 hover:before:translate-x-[200%]'>
-          Get Started
-        </Button>
+        <CTA/>
       </div>
     </header>
   )
