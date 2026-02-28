@@ -27,14 +27,14 @@ const Header = () => {
   ];
 
   return (
-    <header className='sticky top-5 z-10 flex items-center justify-between w-full max-w-175 mt-7 mx-auto px-8 py-2 rounded-full bg-linear-to-b from-[rgba(229,228,255,0.8)] to-white backdrop-blur-[18px] border border-[#D1D1D1] shadow-[0_4px_32px_rgba(0,0,0,0.5)] max-md:max-w-[calc(100%-32px)] max-md:px-4 max-md:py-2.5 max-md:mt-4'>
+    <header className='sticky top-5 z-10 flex items-center justify-between w-full md:max-w-[70%] mt-7 mx-auto px-8 py-2 rounded-full bg-linear-to-b from-[rgba(229,228,255,0.8)] to-white backdrop-blur-[18px] border border-[#D1D1D1] shadow-[0_4px_32px_rgba(0,0,0,0.5)] max-md:px-4 max-md:py-2.5 max-md:mt-4'>
       <h1
         onClick={() => router.push('/')}
-        className='font-bold text-lg tracking-[-0.01em] leading-[0.96] max-[480px]:text-sm cursor-pointer bg-linear-to-br from-accent via-secondary to-emerald-500 bg-clip-text text-transparent'
+        className='font-bold text-xl tracking-[-0.01em] leading-[0.96] max-[480px]:text-sm cursor-pointer bg-linear-to-br from-accent via-secondary to-emerald-500 bg-clip-text text-transparent'
       >
         XCortz
       </h1>
-      <ul className="flex items-center gap-7 list-none max-md:hidden">
+      <ul className="lg:flex items-center gap-7 list-none hidden ">
         {navLink.map((item, index) =>
           <li
             key={index}

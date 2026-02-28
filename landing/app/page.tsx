@@ -10,7 +10,7 @@ export default function Home() {
       }}
     />
   
-    <div className="relative z-10 p-5">
+    <div className="relative z-10 container mx-auto py-5 px-6 md:px-12 lg:px-20 xl:px-30">
       <HeroSection />
     </div>
   </main>
