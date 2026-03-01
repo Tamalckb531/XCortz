@@ -10,19 +10,19 @@ const Header = () => {
   const navLink: NavLink[] = [
     {
       name: "Features",
-      link: "features"
+      link: "#features"
     },
     {
       name: "Product",
-      link: "product"
+      link: "#product"
     },
     {
       name: "About",
-      link: "about"
+      link: "#about"
     },
     {
       name: "Pricing",
-      link: "pricing"
+      link: "#pricing"
     }
   ];
 
